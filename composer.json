@@ -1,5 +1,5 @@
 {
-    "name": "salernolabs/bootstrap-pagination",
+    "name": "salernolabs/pagination",
     "description": "A simple class that just wraps some pagination stuff and builds bootstrap HTML",
     "type": "library",
     "license": "MIT",
