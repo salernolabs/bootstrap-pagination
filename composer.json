@@ -1,0 +1,23 @@
+{
+    "name": "salernolabs/bootstrap-pagination",
+    "description": "A simple class that just wraps some pagination stuff and builds bootstrap HTML",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://www.salernolabs.com/",
+    "authors": [
+        {
+            "name": "Eric Salerno",
+            "email": "salernolabs@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SalernoLabs\\Pagination\\": "src/",
+            "SalernoLabs\\Tests\\Pagination\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    }
+}
