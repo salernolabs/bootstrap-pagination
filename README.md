@@ -1,6 +1,8 @@
 # salernolabs/pagination
 
-![Travis Build Status](https://travis-ci.com/salernolabs/pagination.svg?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/salernolabs/pagination/v/stable)](https://packagist.org/packages/salernolabs/pagination)
+[![License](https://poser.pugx.org/salernolabs/pagination/license)](https://packagist.org/packages/salernolabs/pagination)
+[![Build Status](https://travis-ci.com/salernolabs/pagination.svg?branch=master)](https://travis-ci.org/salernolabs/pagination)
 
 A simple library that wraps some common pagination stuff and can build bootstrap HTML. Yes I know a billion of these exist, I've been offloading old code into individual tested libraries for organization purposes as I move some sites over to Symfony. I may add more formatters at some point, I've been playing with material ui as well, but its not here yet. PR's welcome.
 
