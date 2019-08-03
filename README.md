@@ -2,6 +2,8 @@
 
 A simple library that wraps some common pagination stuff and can build bootstrap HTML. Yes I know a billion of these exist, I've been offloading old code into individual tested libraries for organization purposes as I move some sites over to Symfony. I may add more formatters at some point, I've been playing with material ui as well, but its not here yet. PR's welcome.
 
+![Example Pagination Image](docs/images/pagination.png)
+
 ## Installation
 
     composer require salernolabs/pagination
@@ -36,7 +38,7 @@ The `->getPaginationData()` method will return the [PageData](src/PageData.php) 
     
 ### BootstrapHTML Generator
 
-The [BootstrapHTML](src/Formatter/BootstrapHTML.php) formatter object extends the base pagination class and provides an extra function for generating HTML suitable for raw output in a template.
+The [BootstrapHTML](src/Formatter/BootstrapHTML.php) formatter object extends the base pagination class and provides an extra function for generating HTML suitable for raw output in a template on a site that includes the [Bootstrap](https://getbootstrap.com/) library.
 
 #### `->generateOutput($paginationUrl, $pageNumberConstant, $additionalUrlData)`
 
@@ -61,9 +63,22 @@ Finally the third parameter just adds extra stuff to the end of your URLs.
     
     // eg. LIMIT $page->getOffset(), $page->getItemsPerPage()
     
-    $paginationHTML = $page->generateOutput('/news/#', '#');
+    $paginationHTML = $pagination->generateOutput('/news/#', '#');
 
 At this point you should have the HTML you need to output.
+
+#### Customizing the HTML
+
+There are some extra methods in formatters to tweak the output of the HTML. They are as follows: 
+
+| Method | Default | Info |
+|--------|------|-------|
+| `setNextButton()` | `&rsaquo;` | Sets the text for the "next" button. |
+| `setPreviousButton()` | `&lsaquo;` | Sets the text for the "previous" button. |
+| `setFirstButton()` | `&laquo;` | Sets the text for the "first" button. |
+| `setLastButton()` | `&raquo;` | Sets the text for the "last" button. |
+| `setSpace()` | `&nbsp;` | Sets the string to use for spaces. |
+| `setItemStride()` | `5` | Sets the stride, basically controls the number of number buttons. A value of five would show five before the current value and five including and after the current value for a total of 10. |
 
 ### Testing
 
