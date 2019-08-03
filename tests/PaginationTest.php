@@ -3,6 +3,7 @@
 namespace SalernoLabs\Tests\Pagination;
 
 use PHPUnit\Framework\TestCase;
+use SalernoLabs\Pagination\PageData;
 use SalernoLabs\Pagination\Pagination;
 
 /**
@@ -22,14 +23,8 @@ class PaginationTest extends TestCase
             ->setNumberOfItemsPerPage(10)
             ->setTotalItems(41);
 
-        $this->assertSame(
-            [
-                'pageNumber' => 3,
-                'totalItems' => 41,
-                'itemsPerPage' => 10,
-                'offset' => 20,
-                'totalPages' => 5,
-            ],
+        $this->assertEquals(
+            new PageData(3, 10, 41),
             $pagination->getPaginationData()
         );
     }

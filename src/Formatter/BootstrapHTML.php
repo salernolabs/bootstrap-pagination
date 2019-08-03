@@ -1,9 +1,8 @@
 <?php
-
 namespace SalernoLabs\Pagination\Formatter;
 
 /**
- * Class BootstrapHTML
+ * This formatted pagination class can return Bootstrap HTML
  * @package SalernoLabs\Pagination\Formatter
  */
 class BootstrapHTML extends Base
@@ -17,17 +16,15 @@ class BootstrapHTML extends Base
         string $additionalUrlData = ''
     ) {
         $data = $this->getPaginationData();
-        $pageNumber = $data['pageNumber'];
-        $totalPages = $data['totalPages'];
 
-        if ($totalPages <= 1) {
+        if ($data->getTotalPages() <= 1) {
             return '';
         }
 
         $output = '<ul class="pagination justify-content-center">';
 
-        $cFirst = ($pageNumber - $this->formatItemStride);
-        $cLast = ($pageNumber + ($this->formatItemStride - 1));
+        $cFirst = ($data->getPageNumber() - $this->formatItemStride);
+        $cLast = ($data->getPageNumber() + ($this->formatItemStride - 1));
 
         if ($cFirst > 1) {
             $output .= sprintf(
@@ -40,22 +37,22 @@ class BootstrapHTML extends Base
             $cFirst = 1;
         }
 
-        if ($pageNumber !== 1) {
+        if ($data->getPageNumber() !== 1) {
             $output .= sprintf(
                 '<li class="page-item"><a class="page-link" href="%s">%s</a></li>%s',
-                str_replace($pageNumberConstant, ($pageNumber - 1), $paginationUrl) . $additionalUrlData,
+                str_replace($pageNumberConstant, ($data->getPageNumber() - 1), $paginationUrl) . $additionalUrlData,
                 $this->formatFieldPrevious,
                 $this->formatFieldSpace
             );
         }
 
 
-        if ($cLast > $totalPages) {
-            $cLast = $totalPages;
+        if ($cLast > $data->getTotalPages()) {
+            $cLast = $data->getTotalPages();
         }
 
         for ($i = $cFirst; $i <= $cLast; ++$i) {
-            if ($i === $pageNumber) {
+            if ($i === $data->getPageNumber()) {
                 $output .= sprintf(
                     '<li class="page-item active"><a class="page-link" href="javascript:;">%d</a></li>%s',
                     $i,
@@ -71,19 +68,19 @@ class BootstrapHTML extends Base
             }
         }
 
-        if ($pageNumber !== $totalPages) {
+        if ($data->getPageNumber() !== $data->getTotalPages()) {
             $output .= sprintf(
                 '<li class="page-item"><a class="page-link" href="%s">%s</a></li>%s',
-                str_replace($pageNumberConstant, ($pageNumber + 1), $paginationUrl) . $additionalUrlData,
+                str_replace($pageNumberConstant, ($data->getPageNumber() + 1), $paginationUrl) . $additionalUrlData,
                 $this->formatFieldNext,
                 $this->formatFieldSpace
             );
         }
 
-        if ($cLast < $totalPages) {
+        if ($cLast < $data->getTotalPages()) {
             $output .= sprintf(
                 '<li class="page-item"><a class="page-link" href="%s">%s</a></li>',
-                str_replace($pageNumberConstant, $totalPages, $paginationUrl) . $additionalUrlData,
+                str_replace($pageNumberConstant, $data->getTotalPages(), $paginationUrl) . $additionalUrlData,
                 $this->formatFieldLast
             );
         }

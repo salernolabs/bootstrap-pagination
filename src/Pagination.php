@@ -1,5 +1,4 @@
 <?php
-
 namespace SalernoLabs\Pagination;
 
 /**
@@ -92,17 +91,14 @@ class Pagination
 
     /**
      * Get the pagination data
-     * @return array
+     * @return PageData
      */
-    public function getPaginationData(): array
+    public function getPaginationData(): PageData
     {
-        $totalPages = intval(ceil($this->totalItems / $this->numberOfItemsPerPage));
-        return [
-            'pageNumber' => $this->pageNumber > $totalPages ? $totalPages : $this->pageNumber,
-            'totalItems' => $this->totalItems,
-            'itemsPerPage' => $this->numberOfItemsPerPage,
-            'offset' => (($this->pageNumber - 1) * $this->numberOfItemsPerPage),
-            'totalPages' => $totalPages,
-        ];
+        return new PageData(
+            $this->pageNumber,
+            $this->numberOfItemsPerPage,
+            $this->totalItems
+        );
     }
 }

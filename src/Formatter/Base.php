@@ -1,5 +1,4 @@
 <?php
-
 namespace SalernoLabs\Pagination\Formatter;
 
 use SalernoLabs\Pagination\Pagination;
